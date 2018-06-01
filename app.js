@@ -24,7 +24,12 @@ mongodb.MongoClient.connect(uri, (err, db) => {
   // Make database global
   database = new mongodb.GridFSBucket(db)
   // Begin server
-  app.listen(3000, () => {
+
+  //Port?
+
+  port = process.env.PORT || 3000
+
+  app.listen(port, () => {
     console.log('\nServer started! --> visit localhost:3000\n')
   })
 });
