@@ -43,18 +43,31 @@ app.get('/', (req,res) => {
   files = database.find({})
 
   files.on('data', (chunk) => {
-    console.log(chunk)
     lists.push([chunk.filename,chunk.uploadDate,chunk._id])
   })
 
   files.on('end', () => {
-    console.log("LIST: ", lists)
     res.render('index.ejs',{list:lists})
   })
 
 })
 
 
+app.post('/download', (req,res) => {
+  var form = new formidable.IncomingForm()
+
+
+
+  form.parse(req, (err,fields) => {
+    console.log(fields)
+
+    var sup = database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./eee.jpg")).
+    on('finish', () => {res.redirect('/')})
+
+
+  })
+
+})
 
 
 
