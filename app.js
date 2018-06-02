@@ -61,7 +61,7 @@ app.post('/download', (req,res) => {
   form.parse(req, (err,fields) => {
     console.log(fields)
 
-    var sup = database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./eee.jpg")).
+    var sup = database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./" + fields.name)).
     on('finish', () => {res.redirect('/')})
 
 
