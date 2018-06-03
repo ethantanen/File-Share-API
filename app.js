@@ -63,7 +63,7 @@ app.get('/', (req,res) => {
   })
 
   files.on('end', () => {
-    res.render('index.ejs',{list:lists,link:})
+    res.render('index.ejs',{list:lists})
   })
 
 })
