@@ -69,14 +69,16 @@ app.post('/download/id', (req,res) => {
   var form = new formidable.IncomingForm()
 
   form.parse(req, (err,fields) => {
+
     console.log(fields)
 
 
-    console.log(__dirname + dir)
-    
+    console.log("DIR NAME:" , __dirname + dir)
+
     dir = "/tmp"
 
     if(!fs.existsSync(dir)){
+      console.log("DIR CREATED")
       fs.mkdirSync(dir)
     }
 
@@ -84,7 +86,7 @@ app.post('/download/id', (req,res) => {
     on('finish', () => {
 
 
-
+      console.log("SOME WRITING WENT DOWN")
       console.log(fs.existsSync("./tmp/"+fields.name))
 
 
