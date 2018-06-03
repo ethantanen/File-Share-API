@@ -87,7 +87,7 @@ app.post('/download/id', (req,res) => {
 
 
       console.log("SOME WRITING WENT DOWN")
-      console.log(fs.existsSync("app/tmp/"+fields.name))
+      console.log(fs.existsSync(__dirname + "/tmp/"+fields.name))
 
 
       res.redirect('/')
