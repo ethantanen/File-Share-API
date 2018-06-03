@@ -27,7 +27,9 @@ mongodb.MongoClient.connect(uri, (err, db) => {
   database = new mongodb.GridFSBucket(db)
   // Create folder for storing files temporaroly
   var dir = "/ass"
+
   console.log(__dirname + dir)
+  console.log("HELLO")
 
   fs.mkdirSync(__dirname + dir)
 
