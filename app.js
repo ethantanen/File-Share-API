@@ -83,22 +83,22 @@ app.post('/download/id', (req,res) => {
 
 
     dir = "/tmp"
-    console.log("DIR NAME:" , __dirname + dir)
+    console.log("DIR NAME:" , __dirname + "/.." dir)
 
     if(!fs.existsSync(__dirname + dir)){
       console.log("DIR CREATED")
-      fs.mkdirSync(__dirname + dir)
+      fs.mkdirSync(__dirname +  "/.." + dir)
     }
 
-    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream(__dirname + "/tmp/" + fields.name)).
+    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream(__dirname + "../tmp/" + fields.name)).
     on('finish', () => {
 
 
       console.log("SOME WRITING WENT DOWN")
-      console.log(fs.existsSync(__dirname + "/tmp/"+fields.name))
+      console.log(fs.existsSync(__dirname + "../tmp/"+fields.name))
 
 
-      res.redirect('/?link='+ __dirname + "/tmp/" + fields.name)
+      res.redirect('/?link='+ __dirname + "../tmp/" + fields.name)
 
     })
 
