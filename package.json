@@ -1,12 +1,12 @@
 {
-  "name": "gridfs_stream_test",
+  "name": "file_upload_api",
   "version": "1.0.0",
-  "description": "",
+  "description": " An api for sharing files between discrete computers via a mongo database.",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js"
   },
-  "author": "",
+  "author": "Ethan Tanen",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",

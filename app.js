@@ -25,7 +25,21 @@ mongodb.MongoClient.connect(uri, (err, db) => {
   if(err) return console.log(err)
   // Make database global
   database = new mongodb.GridFSBucket(db)
-  // Begin server
+  // Create folder for storing files temporaroly
+  var dir = "/ass"
+  console.log(__dirname + dir)
+
+  fs.mkdirSync(__dirname + dir)
+
+  /*
+  console.log("HERE")
+  if(!fs.existsSync(dir)){
+    console.log("HERE")
+    fs.mkdirSync(dir)
+  }*/
+
+
+  // Begin Server
   var PORT = process.env.PORT || 3000
 
   app.listen(PORT, () => {
@@ -61,7 +75,11 @@ app.post('/download/id', (req,res) => {
     console.log(fields)
 
     database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./" + fields.name)).
-    on('finish', () => {res.redirect('/')})
+    on('finish', () => {
+      console.log(fs.existsSync("./"+fields.name))
+      res.redirect('/')
+
+    })
 
   })
 })
