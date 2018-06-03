@@ -8,115 +8,117 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <link rel="stylesheet" href="style.css">
 
-<head>
+  <head>
 
-<body>
+    <body>
 
-  <!-- Upload File -->
-  <div class="container">
+      <!-- Upload File -->
+      <div class="container">
 
-    <!-- Title of form -->
-    <div class="row">
-      <div class="col-md-10 m-auto">
-        <h1 class="text-center">Upload File</h1><br>
-      </div>
-    </div>
+        <div class="row">
 
-    <!-- Form construction -->
-    <div class="row">
-      <div class="col-md-10 m-auto">
-        <div class="well">
-          <form action="/upload" method="POST" enctype="multipart/form-data">
+          <!-- Upload File -->
+          <div class="col-md-6 ">
+            <h1 class="text-center">Upload File</h1><br>
+            <div class="well">
+              <form action="/upload" method="POST" enctype="multipart/form-data">
 
-            <!-- Upload File -->
-            <h4> Choose a File </h4>
-            <div class="form-group">
-              <label class="btn btn-block btn-primary">
-                Browse<input type="file" name="file" style="display: none;" onchange="$('#upload-file-info').val($(this).val());">
-              </label>
-              <input type="text" class="form-control" id="upload-file-info" readonly>
+                <!-- Choose File to be Uploaded -->
+                <h4> Choose a File </h4>
+                <div class="form-group">
+                  <label class="btn btn-block btn-primary">
+                    Browse<input type="file" name="file" style="display: none;" onchange="$('#upload-file-info').val($(this).val());">
+                  </label>
+                  <input type="text" class="form-control" id="upload-file-info" readonly>
+                </div>
+
+                <!-- Add Tags -->
+                <h4>  Add Tags</h4>
+                <div class="input-group">
+                  <span class="input-group-addon  "> Tags </span>
+                  <input id="tags" type="text" class="form-control" name="tags" placeholder="copy and paste id">
+                </div>
+                <br>
+                <!-- Submit Form -->
+                <button type="submit" class="btn btn-success">Submit</button>
+
+              </form>
             </div>
-
-            <!-- Add Tags -->
-            <h4> Add Tags </h4>
-            <div class="input-group">
-                <span class="input-group-addon">Tags</span>
-                <input id="msg" type="text" class="form-control" name="msg" placeholder="tag 1, tag2, tag3,...">
-            </div>
-            <br>
-
-            <!-- Submit Form -->
-            <button type="submit" class="btn btn-success">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- List Database -->
-  <div class="container">
-
-    <!-- Title of form -->
-    <div class="row">
-      <div class="col-md-10 m-auto">
-        <h1 class="text-center">Database Content</h1><br>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-md-10 m-auto">
-
-        <div class="panel-group" style="overflow-y: scroll; height: 500px">
-
-
-         <% for(var i=0; i<list.length; i++) { %>
-
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3><%= list[i][0].toString() %></h3>
-              </div>
-              <div class="panel-body">
-                <ul>
-                  <li><h5> Upload Date: <%= list[i][1].toString() %></h5></li>
-                  <li><h5>ID: <%= list[i][2].toString() %></h5></li>
-                </ul>
-              </div>
-            </div>
-          <% } %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Download -->
-  <div class="container">
-    <div class="col-md-10 m-auto">
-
-      <div class="well">
-        <form action="/download" method="POST" enctype="multipart/form-data">
-
-          <!-- Enter ID -->
-          <h4> Download File </h4>
-          <div class="input-group">
-              <span class="input-group-addon">ID</span>
-              <input id="id" type="text" class="form-control" name="id" placeholder="copy and paste id">
-              <span class="input-group-addon">Name.extension</span>
-              <input id="name" type="text" class="form-control" name="name" placeholder="input name and extension">
           </div>
-          <br>
 
-          <!-- Submit Form -->
-          <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+          <!-- Download -->
+          <div class="col-md-6 m-auto">
+            <h1 class="text-center"> Database Operations </h1><br>
+
+            <div class="well">
+              <form action="/download/id" method="POST" enctype="multipart/form-data">
+
+                <!-- Enter ID -->
+                <h4> Download File </h4>
+                <div class="input-group">
+                  <span class="input-group-addon  "> 	&nbsp ID  	&nbsp 	&nbsp</span>
+                  <input id="id" type="text" class="form-control" name="id" placeholder="copy and paste id">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon">Name</span>
+                  <input id="name" type="text" class="form-control" name="name" placeholder="input name and extension">
+                </div>
+                <br>
+
+                <!-- Submit Form -->
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+              <br>
+
+              <form action="/delete/id" method="POST" enctype="multipart/form-data">
+
+                <!-- Enter ID -->
+                <h4> Delete File </h4>
+                <div class="input-group">
+                  <span class="input-group-addon  "> 	&nbsp ID  	&nbsp 	&nbsp</span>
+                  <input id="id" type="text" class="form-control" name="id" placeholder="copy and paste id">
+                </div>
+                <br>
+
+                <!-- Submit Form -->
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <!-- Title of form -->
+          <div class="col-md-12 ">
+            <h1 class="text-center">Database Content</h1><br>
+            <div class="well">
+              <div class="panel-group" style="overflow-y: scroll; height: 500px">
+
+
+                <% for(var i=0; i<list.length; i++) { %>
+
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <h3> <%= list[i][0].toString() %> </h3>
+                    </div>
+                    <div class="panel-body">
+                      <ul>
+                        <li>
+                          <h5> Upload Date: <%= list[i][1].toString() %> </h5>
+                        </li>
+                        <li>
+                          <h5>ID: <%= list[i][2].toString() %> </h5>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-    </div>
-  </div>
-
-
-
-</body>
+    </body>
 
 </html>

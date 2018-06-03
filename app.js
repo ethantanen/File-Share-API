@@ -2,8 +2,11 @@ const fs = require('fs');
 const mongodb = require('mongodb');
 const express = require('express')
 const formidable = require('formidable')
-
 const app = express()
+
+
+// Uses environment port if specified and localhost:3000 if not
+const PORT = process.env.PORT || 3000
 
 // Set the view engine in order to render interface
 app.set('view engine', 'ejs');
@@ -24,12 +27,7 @@ mongodb.MongoClient.connect(uri, (err, db) => {
   // Make database global
   database = new mongodb.GridFSBucket(db)
   // Begin server
-
-  //Port?
-
-  port = process.env.PORT || 3000
-
-  app.listen(port, () => {
+  app.listen(PORT, () => {
     console.log('\nServer started! --> visit localhost:3000\n')
   })
 });
@@ -37,7 +35,6 @@ mongodb.MongoClient.connect(uri, (err, db) => {
 
 // Display form
 app.get('/', (req,res) => {
-
   var lists = []
 
   files = database.find({})
@@ -53,22 +50,28 @@ app.get('/', (req,res) => {
 })
 
 
-app.post('/download', (req,res) => {
+// Download file by id
+app.post('/download/id', (req,res) => {
+
   var form = new formidable.IncomingForm()
-
-
 
   form.parse(req, (err,fields) => {
     console.log(fields)
 
-    var sup = database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./" + fields.name)).
+    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./" + fields.name)).
     on('finish', () => {res.redirect('/')})
 
-
   })
-
 })
 
+// Delete file by id
+app.post('/delete/id', (req,res) => {
+  var form = new formidable.IncomingForm()
+
+  form.parse(req, (err, fields) => {
+    database.delete(mongodb.ObjectId(fields.id), ()=>{res.redirect('/')})
+  })
+})
 
 
 // Download file by name to current directory
