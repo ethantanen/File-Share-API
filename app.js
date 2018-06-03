@@ -71,16 +71,21 @@ app.post('/download/id', (req,res) => {
   form.parse(req, (err,fields) => {
     console.log(fields)
 
-    dir = "/tmp"
+
     console.log(__dirname + dir)
-    fs.mkdirSync(__dirname + dir)
+    
+    dir = "/tmp"
+
+    if(!fs.existsSync(dir)){
+      fs.mkdirSync(dir)
+    }
 
     database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./tmp/" + fields.name)).
     on('finish', () => {
 
 
 
-      console.log(fs.existsSync("./"+fields.name))
+      console.log(fs.existsSync("./tmp/"+fields.name))
 
 
       res.redirect('/')
