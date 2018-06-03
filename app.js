@@ -52,7 +52,7 @@ app.get('/', (req,res) => {
   var link = ""
   if(req.query.link){
     console.log("LINK: " + req.query.link)
-    link = req.query
+    link = req.query.link
   }
 
   var lists = []
