@@ -11,7 +11,7 @@ const app = express()
 app.set('view engine', 'ejs');
 
 //Middleware?
-app.use(express.static(__dirname + '/views'));
+app.use(express.static('/views'));
 
 // Address of mongodb hosted on mlab.com
 const uri = "mongodb://ethantanen:mississippi1@ds245240.mlab.com:45240/file-api";
