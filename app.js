@@ -82,7 +82,7 @@ app.post('/download/id', (req,res) => {
       fs.mkdirSync(dir)
     }
 
-    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("app/tmp/" + fields.name)).
+    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream(__dirname + "/tmp/" + fields.name)).
     on('finish', () => {
 
 
