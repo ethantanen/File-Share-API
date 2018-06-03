@@ -73,9 +73,9 @@ app.post('/download/id', (req,res) => {
     console.log(fields)
 
 
-    console.log("DIR NAME:" , __dirname + dir)
 
     dir = "/tmp"
+    console.log("DIR NAME:" , __dirname + dir)
 
     if(!fs.existsSync(dir)){
       console.log("DIR CREATED")
