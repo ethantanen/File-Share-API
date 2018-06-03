@@ -64,6 +64,7 @@ app.get('/', (req,res) => {
   })
 
   files.on('end', () => {
+    console.log("LINK DOW: " + link)
     res.render('index.ejs',{list:lists,link: link})
   })
 
