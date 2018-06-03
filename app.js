@@ -48,6 +48,12 @@ mongodb.MongoClient.connect(uri, (err, db) => {
 
 // Display form
 app.get('/', (req,res) => {
+
+
+  if(req.query.link){
+    console.log("LINK: " + req.query.link)
+  }
+
   var lists = []
 
   files = database.find({})
@@ -57,7 +63,7 @@ app.get('/', (req,res) => {
   })
 
   files.on('end', () => {
-    res.render('index.ejs',{list:lists})
+    res.render('index.ejs',{list:lists,link:})
   })
 
 })
@@ -90,11 +96,12 @@ app.post('/download/id', (req,res) => {
       console.log(fs.existsSync(__dirname + "/tmp/"+fields.name))
 
 
-      res.redirect('/')
+      res.redirect('/?link='+ __dirname + "/tmp/" + fields.name)
 
     })
 
   })
+
 })
 
 // Delete file by id
