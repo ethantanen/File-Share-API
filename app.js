@@ -71,6 +71,7 @@ app.post('/download/id', (req,res) => {
   form.parse(req, (err,fields) => {
     console.log(fields)
 
+    dir = "/tmp"
     console.log(__dirname + dir)
     fs.mkdirSync(__dirname + dir)
 
