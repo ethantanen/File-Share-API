@@ -26,12 +26,7 @@ mongodb.MongoClient.connect(uri, (err, db) => {
   // Make database global
   database = new mongodb.GridFSBucket(db)
   // Create folder for storing files temporaroly
-  var dir = "/ass"
 
-  console.log(__dirname + dir)
-  console.log("HELLO")
-
-  fs.mkdirSync(__dirname + dir)
 
   /*
   console.log("HERE")
@@ -76,9 +71,17 @@ app.post('/download/id', (req,res) => {
   form.parse(req, (err,fields) => {
     console.log(fields)
 
-    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./" + fields.name)).
+    console.log(__dirname + dir)
+    fs.mkdirSync(__dirname + dir)
+
+    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./tmp/" + fields.name)).
     on('finish', () => {
+
+
+
       console.log(fs.existsSync("./"+fields.name))
+
+
       res.redirect('/')
 
     })
