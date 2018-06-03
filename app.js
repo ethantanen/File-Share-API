@@ -49,9 +49,10 @@ mongodb.MongoClient.connect(uri, (err, db) => {
 // Display form
 app.get('/', (req,res) => {
 
-
+  var link = ""
   if(req.query.link){
     console.log("LINK: " + req.query.link)
+    link = req.query
   }
 
   var lists = []
@@ -63,7 +64,7 @@ app.get('/', (req,res) => {
   })
 
   files.on('end', () => {
-    res.render('index.ejs',{list:lists})
+    res.render('index.ejs',{list:lists,link: link})
   })
 
 })
