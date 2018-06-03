@@ -34,6 +34,8 @@ mongodb.MongoClient.connect(uri, (err, db) => {
 });
 
 
+app.post('/', (req,res) => { res.render('index.ejs', {list:[]})})
+
 // Display form
 app.get('/', (req,res) => {
   var lists = []
