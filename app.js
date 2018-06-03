@@ -36,7 +36,7 @@ mongodb.MongoClient.connect(uri, (err, db) => {
 
 
 // Display form
-app.get('', (req,res) => {
+app.get('/', (req,res) => {
   var lists = []
 
   files = database.find({})
