@@ -82,12 +82,12 @@ app.post('/download/id', (req,res) => {
       fs.mkdirSync(dir)
     }
 
-    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./tmp/" + fields.name)).
+    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("app/tmp/" + fields.name)).
     on('finish', () => {
 
 
       console.log("SOME WRITING WENT DOWN")
-      console.log(fs.existsSync("./tmp/"+fields.name))
+      console.log(fs.existsSync("app/tmp/"+fields.name))
 
 
       res.redirect('/')
