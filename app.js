@@ -79,7 +79,7 @@ app.post('/download/id', (req,res) => {
 
     if(!fs.existsSync(__dirname + dir)){
       console.log("DIR CREATED")
-      fs.mkdirSync(dir)
+      fs.mkdirSync(__dirname + dir)
     }
 
     database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream(__dirname + "/tmp/" + fields.name)).
