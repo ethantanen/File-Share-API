@@ -6,7 +6,6 @@ const app = express()
 
 
 // Uses environment port if specified and localhost:3000 if not
-console.log(PORT)
 
 // Set the view engine in order to render interface
 app.set('view engine', 'ejs');
