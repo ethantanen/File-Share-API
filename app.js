@@ -4,17 +4,17 @@ const express = require('express')
 const formidable = require('formidable')
 const app = express()
 
-
-// Uses environment port if specified and localhost:3000 if not
-
-// Set the view engine in order to render interface
+// Set the view engine in order to render UI
 app.set('view engine', 'ejs');
 
-//Middleware?
+// Declare location of static files
 app.use(express.static('/views'));
 
 // Address of mongodb hosted on mlab.com
-const uri = "mongodb://ethantanen:mississippi1@ds245240.mlab.com:45240/file-api";
+
+console.log(process.env.USER_MLAB)
+
+const uri = "mongodb://" + process.env.USER_MLAB + ":" + process.env.PASSWORD_MLAB + "@ds245240.mlab.com:45240/file-api";
 
 // GridFSBucket object used for communicating with mongodb
 var database
@@ -22,117 +22,84 @@ var database
 // Connect to mongodb
 mongodb.MongoClient.connect(uri, (err, db) => {
   // Check for errors
-  if(err) return console.log(err)
+  if (err) return console.log(err)
   // Make database global
   database = new mongodb.GridFSBucket(db)
-  // Create folder for storing files temporaroly
-
-
-  /*
-  console.log("HERE")
-  if(!fs.existsSync(dir)){
-    console.log("HERE")
-    fs.mkdirSync(dir)
-  }*/
-
-
-  // Begin Server
+  // Begin Server using appropriate port
   var PORT = process.env.PORT || 3000
-
   app.listen(PORT, () => {
-    console.log('\nServer started! --> visit localhost:' + PORT  + "\n")
+    console.log('\nServer started! --> visit localhost:' + PORT + "\n")
   })
 });
 
+// Display home page
+app.all('/', (req, res) => {
 
+  var files_meta = [] // list to store information about each queried file
+  var form = new formidable.IncomingForm() // used to process form
+  var files // cursor object returned by find function
 
-// Display form
-app.get('/', (req,res) => {
+  //parse the form
+  form.parse(req, (err, fields) => {
 
-  var link = ""
-  if(req.query.link){
-    console.log("LINK: " + req.query.link)
-    link = req.query.link
-  }
+    //if the user wants to filter by tags process the tags
+    if (fields.tags) {
 
-  var lists = []
+      //split up comma dilineated tags and search database accordingly
+      var tags = fields.tags.split(',')
+      files = database.find({
+        "metadata": {$in: tags}
+      })
 
-  files = database.find({})
-
-  files.on('data', (chunk) => {
-    lists.push([chunk.filename,chunk.uploadDate,chunk._id])
-  })
-
-  files.on('end', () => {
-    console.log("LINK DOW: " + link)
-    res.render('index.ejs',{list:lists,link: link})
-  })
-
-})
-
-
-// Download file by id
-app.post('/download/id', (req,res) => {
-
-  var form = new formidable.IncomingForm()
-
-  form.parse(req, (err,fields) => {
-
-    console.log(fields)
-
-
-
-    dir = "/tmp"
-    console.log("DIR NAME:" , __dirname + "/.." + dir)
-
-    if(!fs.existsSync(__dirname + "/.." + dir)){
-      console.log("DIR CREATing")
-      fs.mkdirSync(__dirname +  "/.." + dir)
-      console.log("CREATED")
+    } else {
+      files = database.find({})
     }
 
-    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream(__dirname + "/../tmp/" + fields.name)).
-    on('finish', () => {
-
-
-      console.log("SOME WRITING WENT DOWN")
-      console.log(fs.existsSync(__dirname + "/../tmp/"+fields.name))
-
-
-      res.redirect('/?link='+ __dirname + "/../tmp/" + fields.name)
-
+    // push each files information into the files_meta list
+    files.on('data', (chunk) => {
+      files_meta.push([chunk.filename, chunk.uploadDate, chunk._id, chunk.metadata])
     })
 
+    //render the page after processing files in the database
+    files.on('end', () => {
+      res.render('index.ejs', {
+        list: files_meta
+      })
+    })
   })
-
 })
 
-// Delete file by id
-app.post('/delete/id', (req,res) => {
+// Download file by id
+app.post('/download/id', (req, res) => {
+
   var form = new formidable.IncomingForm()
 
   form.parse(req, (err, fields) => {
-    database.delete(mongodb.ObjectId(fields.id), ()=>{res.redirect('/')})
+
+    console.log(fields)
+
+    database.openDownloadStream(mongodb.ObjectId(fields.id)).pipe(fs.createWriteStream("./" + fields.name)).
+    on('finish', () => {
+
+      res.redirect('/')
+
+    })
   })
 })
 
+// Delete file by id
+app.post('/delete/id', (req, res) => {
+  var form = new formidable.IncomingForm()
 
-// Download file by name to current directory
-app.get('/find/name', (req,res) => {
-
-  file_name = req.query.name
-  var file = database.openDownloadStreamByName(file_name).pipe(fs.createWriteStream("./"+file_name))
-
-  res.redirect('/')
-
+  form.parse(req, (err, fields) => {
+    database.delete(mongodb.ObjectId(fields.id), () => {
+      res.redirect('/')
+    })
+  })
 })
 
-//
-
-
-
 // Upload file
-app.post('/upload', (req,res) => {
+app.post('/upload', (req, res) => {
 
   var form = new formidable.IncomingForm();
 
@@ -140,21 +107,23 @@ app.post('/upload', (req,res) => {
   form.parse(req, function(err, fields, file) {
 
     // Check for errors
-    if(err || file.file.name == "") return console.log("\nFile does not exists")
+    if (err || file.file.name == "") return console.log("\nFile does not exists")
 
     // Saucy print statement
-    console.log("\nUploading...","\nPath:",__dirname + file.file.path,"\nName:",file.file.name)
-
+    console.log("\nUploading...", "\nPath:", __dirname + file.file.path, "\nName:", file.file.name)
 
     // Upload file to database
     fs.createReadStream(file.file.path).
 
-    pipe(database.openUploadStream(file.file.name,{"metadata":fields.tags})).
+    pipe(database.openUploadStream(file.file.name, {
+      "metadata": fields.tags.split(",")
+    })).
 
     // Log errors
-    on('error', (err)  => {
-      if(err) console.log(err)
+    on('error', (err) => {
+      if (err) console.log(err)
     }).
+
     // Log success message
     on('finish', function() {
       console.log(`Success! ${file.file.name} stored in database`);
@@ -163,9 +132,4 @@ app.post('/upload', (req,res) => {
   });
 })
 
-
-
-
-
-
-//TODO: add multiple, delete one/multiple, retrieve one/multiple, update entries tags
+//TODO: delete by contains tag <tag>, find by contains and find by exact

@@ -17,108 +17,142 @@
 
         <div class="row">
 
-          <!-- Upload File -->
-          <div class="col-md-6 ">
-            <h1 class="text-center">Upload File</h1><br>
-            <div class="well">
-              <form action="/upload" method="POST" enctype="multipart/form-data">
+          <!-- Begin Left Column -->
+          <div class="col-md-5">
 
-                <!-- Choose File to be Uploaded -->
-                <h4> Choose a File </h4>
-                <div class="form-group">
-                  <label class="btn btn-block btn-primary">
-                    Browse<input type="file" name="file" style="display: none;" onchange="$('#upload-file-info').val($(this).val());">
-                  </label>
-                  <input type="text" class="form-control" id="upload-file-info" readonly>
-                </div>
+            <!-- Upload File -->
+            <div class="row">
+              <h1 class="text-center">Upload File</h1><br>
+              <div class="well">
+                <form action="/upload" method="POST" enctype="multipart/form-data">
 
-                <!-- Add Tags -->
-                <h4>  Add Tags</h4>
-                <div class="input-group">
-                  <span class="input-group-addon  "> Tags </span>
-                  <input id="tags" type="text" class="form-control" name="tags" placeholder="copy and paste id">
-                </div>
-                <br>
-                <!-- Submit Form -->
-                <button type="submit" class="btn btn-success">Submit</button>
-
-              </form>
-            </div>
-          </div>
-
-          <!-- Download -->
-          <div class="col-md-6 m-auto">
-            <h1 class="text-center"> Database Operations </h1><br>
-
-            <div class="well">
-              <form action="/download/id" method="POST" enctype="multipart/form-data">
-
-                <!-- Enter ID -->
-                <h4> Download File </h4>
-                <div class="input-group">
-                  <span class="input-group-addon  "> 	&nbsp ID  	&nbsp 	&nbsp</span>
-                  <input id="id" type="text" class="form-control" name="id" placeholder="copy and paste id">
-                </div>
-                <div class="input-group">
-                  <span class="input-group-addon">Name</span>
-                  <input id="name" type="text" class="form-control" name="name" placeholder="input name and extension">
-                </div>
-                <br>
-
-                <!-- Submit Form -->
-                <button type="submit" class="btn btn-success">Submit</button>
-                <a href=<%= link %> download>SUP</a>
-              </form>
-              <br>
-
-              <form action="/delete/id" method="POST" enctype="multipart/form-data">
-
-                <!-- Enter ID -->
-                <h4> Delete File </h4>
-                <div class="input-group">
-                  <span class="input-group-addon  "> 	&nbsp ID  	&nbsp 	&nbsp</span>
-                  <input id="id" type="text" class="form-control" name="id" placeholder="copy and paste id">
-                </div>
-                <br>
-
-                <!-- Submit Form -->
-                <button type="submit" class="btn btn-success">Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <!-- Title of form -->
-          <div class="col-md-12 ">
-            <h1 class="text-center">Database Content</h1><br>
-            <div class="well">
-              <div class="panel-group" style="overflow-y: scroll; height: 500px">
-
-
-                <% for(var i=0; i<list.length; i++) { %>
-
-                  <div class="panel panel-primary">
-                    <div class="panel-heading">
-                      <h3> <%= list[i][0].toString() %> </h3>
-                    </div>
-                    <div class="panel-body">
-                      <ul>
-                        <li>
-                          <h5> Upload Date: <%= list[i][1].toString() %> </h5>
-                        </li>
-                        <li>
-                          <h5>ID: <%= list[i][2].toString() %> </h5>
-                        </li>
-                      </ul>
-                    </div>
+                  <!-- Choose File to be Uploaded -->
+                  <h4> Choose a File </h4>
+                  <div class="form-group">
+                    <label class="btn btn-block btn-primary">
+                      Browse<input type="file" name="file" style="display: none;" onchange="$('#upload-file-info').val($(this).val());">
+                    </label>
+                    <input type="text"  class="form-control" id="upload-file-info" readonly>
                   </div>
-                  <% } %>
+
+                  <!-- Add Tags -->
+                  <h4>  Add Tags</h4>
+                  <div class="input-group">
+                    <span class="input-group-addon  "> Tags </span>
+                    <input autocomplete="off" id="tags" type="text" class="form-control" name="tags" placeholder="tag 1, tag 2, tag 3, ...">
+                  </div>
+                  <br>
+                  <!-- Submit Form -->
+                  <button type="submit" class="btn btn-success">Submit</button>
+
+                </form>
               </div>
             </div>
+            <!-- End Upload File -->
+
+
+            <!-- Download -->
+            <div class="row">
+              <h1 class="text-center"> Database Operations </h1><br>
+
+              <div class="well">
+                <form action="/download/id" method="POST" enctype="multipart/form-data">
+
+                  <!-- Enter ID -->
+                  <h4> Download File </h4>
+                  <div class="input-group">
+                    <span class="input-group-addon  "> 	&nbsp ID  	&nbsp 	&nbsp</span>
+                    <input autocomplete="off" id="id" type="text" class="form-control" name="id" placeholder="copy and paste id">
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">Name</span>
+                    <input autocomplete="off" id="name" type="text" class="form-control" name="name" placeholder="input name and extension">
+                  </div>
+                  <br>
+
+                  <!-- Submit Form -->
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+                <br>
+
+                <form action="/delete/id" method="POST" enctype="multipart/form-data">
+
+                  <!-- Enter ID -->
+                  <h4> Delete File </h4>
+                  <div class="input-group">
+                    <span class="input-group-addon  "> 	&nbsp ID  	&nbsp 	&nbsp</span>
+                    <input autocomplete="off" id="id" type="text" class="form-control" name="id" placeholder="copy and paste id">
+                  </div>
+                  <br>
+
+                  <!-- Submit Form -->
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+              </div>
+            </div>
+            <!-- End Download -->
           </div>
-        </div>
+          <!-- End Left Column -->
+
+
+          <!-- Begin Right Column -->
+          <div class="col-md-6 col-md-offset-1 ">
+
+            <div class="row">
+              <h1 class="text-center">Database Content</h1><br>
+              <div class="well">
+                <div class="panel-group" style="overflow-y: scroll; height: 500px">
+
+
+                  <% for(var i=0; i<list.length; i++) { %>
+
+                    <div class="panel panel-primary" style="height: 150">
+                      <div class="panel-heading">
+                        <h5> <%= list[i][0].toString() %> </h5>
+                      </div>
+                      <div class="panel-body">
+                        <ul style="line-height:0">
+                          <li>
+                            <h6> Upload Date: <%= list[i][1].toString() %> </h6>
+                          </li>
+                          <li>
+                            <h6>ID: <%= list[i][2].toString() %> </h6>
+                          </li>
+                          <li>
+                            <h6> Tags: <%= list[i][3] %> </h6>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <% } %>
+                </div>
+              </div>
+            </div>
+            <!-- End Database Content -->
+
+
+            <!-- Begin Search Bar -->
+            <div class="row">
+
+              <div class="well">
+                <form action="/" method="post" enctype="multipart/form-data">
+                  <h4> Filter Database Content </h4>
+                  <div class="input-group">
+                    <span class="input-group-addon  "> Tag </span>
+                    <input autocomplete="off" id="tags" type="text" class="form-control" name="tags" placeholder="enter tag filter and leave blank to view entire database">
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-success">Submit</button>
+
+                </form>
+              </div>
+            </div>
+            <!-- End Search Bar -->
+
+          </div>
+          <!-- End Right Column -->
+      </div>
+
       </div>
     </body>
 
