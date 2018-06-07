@@ -11,13 +11,13 @@ app.set('view engine', 'ejs');
 app.use(express.static('/views'));
 
 // Address of mongodb hosted on mlab.com
-const uri = "mongodb://" + process.env.USER_MLAB + ":" + process.env.PASSWORD_MLAB + "@ds245240.mlab.com:45240/file-api";
+const URI = "mongodb://" + process.env.USER_MLAB + ":" + process.env.PASSWORD_MLAB + "@ds245240.mlab.com:45240/file-api";
 
 // GridFSBucket object used for communicating with mongodb
 var database
 
 // Connect to mongodb
-mongodb.MongoClient.connect(uri, (err, db) => {
+mongodb.MongoClient.connect(URI, (err, db) => {
   // Check for errors
   if (err) return console.log(err)
   // Make database global
