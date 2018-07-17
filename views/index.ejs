@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>File Share API </title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="http://malsup.github.com/jquery.form.js"></script>
+</head>
+<body>
+
+  <h1> File Share API </h1>
+
+  <h5> Upload File </h5>
+  <form action='/upload' method='POST' enctype='multipart/form-data' >
+    <input type='file' name='file'></input>
+    <input type='text' name='tags' value='tag1, tag2, ...'></input>
+    <input type='submit'></input>
+  </form>
+
+  <h5> Download File </h5>
+  <form action='/download/name' method='GET' enctype="application/x-www-form-urlencoded" id='download'>
+    <input type='text' name='name' id='download_text'></input>
+    <input type='radio' name='button' onclick = "$('#download').attr('action','/download/name'); $('#download_text').attr('name','name');" checked> name
+    <input type='radio' name='button' onclick = "$('#download').attr('action','/download/id'); $('#download_text').attr('name','id');"> id
+    <input type='submit'></input>
+  </form>
+
+  <h5> Delete File </h5>
+  <form action='/delete/name' method='GET' enctype="application/x-www-form-urlencoded" id='delete'>
+    <input type='text' name='name' id='delete_text'></input>
+    <input type='radio' name='button1' onclick = "$('#delete').attr('action','/delete/name'); $('#delete_text').attr('name','name');" checked> name
+    <input type='radio' name='button1' onclick = "$('#delete').attr('action','/delete/id'); $('#delete_text').attr('name','id');"> id
+    <input type='submit'></input>
+  </form>
+
+  <h5> DB Viewer </h5>
+  <form action='/find' id='theform'>
+    id:<br>
+    <input type='text'  name='_id' id='id'></input><br>
+    filename:<br>
+    <input type='text'  name='filename'id='filename'></input><br>
+    aliases:<br>
+    <input type='text'  name='aliases' id='aliases'></input><br>
+    <input type='submit' value="Submit" id='dbviewer_button'></input>
+  </form>
+  <table id="dbviewer">
+
+  </table>
+
+  <script>
+    $('#theform').ajaxForm({
+      url: '/find',
+      success: (res) => {
+        $('#dbviewer').empty().append(
+
+         "<tr> " +
+         "<th> ID </th>" +
+          "<th> Filename </th>" +
+          "<th> Aliases </th>" +
+          "<th> Date Added </th>" +
+        "</tr>"
+      )
+        res.forEach((ele) => {
+          console.log(ele._id)
+          $('#dbviewer').append(
+            '<tr>' +
+            '<th>' + ele._id + '</th>' +
+            '<th>' + ele.filename + '</th>' +
+            '<th>' + ele.aliases + '</th>' +
+            '<th>' + ele.uploadDate + '</th>' +
+            '</tr>')
+
+        })
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  </script>
+</body>
+</html>
