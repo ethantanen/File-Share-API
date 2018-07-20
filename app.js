@@ -10,8 +10,9 @@ const logger = require('morgan')
 app = express()
 app.set('view engine', 'ejs')
 app.use(logger('tiny'))
-app.listen(3000, () => {
-  console.log("listening on port 3000")
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+  console.log("listening on port ",PORT)
 })
 
 // connect to mongo database
