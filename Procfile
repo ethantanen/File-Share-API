@@ -1,1 +1,1 @@
-web: node app.js
+web: source app_env && node app.js
