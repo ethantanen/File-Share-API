@@ -5,15 +5,27 @@ const mongo = require('mongodb')
 const upload = require('multer')({dest:'upload/'})
 const path = require('path')
 const logger = require('morgan')
+const https = require('https')
 
 // create app, set view engine and begin server
 app = express()
 app.set('view engine', 'ejs')
+app.use(express.static(__dirname + '/static'))
 app.use(logger('tiny'))
+
 const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-  console.log("listening on port ",PORT)
-})
+// app.listen(PORT, () => {
+//   console.log("listening on port ",PORT)
+// })
+// begin https server on port 8000
+https.createServer({
+    key: fs.readFileSync('./encryption/server.key'),
+    cert: fs.readFileSync('./encryption/server.cert')
+  }, app)
+  .listen(PORT, (err) => {
+    if (err) return console.log("Can't connect to port ",PORT, err)
+    return console.log("Listening on port ", PORT)
+  })
 
 // connect to mongo database
 const URI = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + '@ds245240.mlab.com:45240/file-api'
