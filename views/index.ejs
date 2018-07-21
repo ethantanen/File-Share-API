@@ -4,47 +4,83 @@
   <title>File Share API </title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="http://malsup.github.com/jquery.form.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
+  <div class='container'>
+    <div class='jumbotron'>
+      <h1 class='text=center'> File Share API </h1>
+    </div>
 
-  <h1> File Share API </h1>
+    <div class='card'>
+      <div class='card-header'>
+        <h5> Upload File </h5>
+      </div>
+      <div class='card-body'>
+        <form action='/upload' method='POST' enctype='multipart/form-data' >
+          <input type='file' name='file'></input>
+          <input type='text' name='tags' value='tag1, tag2, ...'></input>
+          <input type='submit'></input>
+        </form>
+      </div>
+    </div> <br>
 
-  <h5> Upload File </h5>
-  <form action='/upload' method='POST' enctype='multipart/form-data' >
-    <input type='file' name='file'></input>
-    <input type='text' name='tags' value='tag1, tag2, ...'></input>
-    <input type='submit'></input>
-  </form>
+    <div class='card'>
+      <div class='card-header'>
+        <h5> Download File </h5>
+      </div>
+      <div class='card-body'>
+        <form action='/download/name' method='GET' enctype="application/x-www-form-urlencoded" id='download'>
+          <input type='text' name='name' id='download_text'></input>
+          <input type='radio' name='button' onclick = "$('#download').attr('action','/download/name'); $('#download_text').attr('name','name');" checked> name
+          <input type='radio' name='button' onclick = "$('#download').attr('action','/download/id'); $('#download_text').attr('name','id');"> id
+          <input type='submit'></input>
+        </form>
+      </div>
+    </div> <br>
 
-  <h5> Download File </h5>
-  <form action='/download/name' method='GET' enctype="application/x-www-form-urlencoded" id='download'>
-    <input type='text' name='name' id='download_text'></input>
-    <input type='radio' name='button' onclick = "$('#download').attr('action','/download/name'); $('#download_text').attr('name','name');" checked> name
-    <input type='radio' name='button' onclick = "$('#download').attr('action','/download/id'); $('#download_text').attr('name','id');"> id
-    <input type='submit'></input>
-  </form>
+    <div class='card'>
+      <div class='card-header'>
+        <h5> Delete File </h5>
+      </div>
+      <div class='card-body'>
+        <form action='/delete/name' method='GET' enctype="application/x-www-form-urlencoded" id='delete'>
+          <input type='text' name='name' id='delete_text'></input>
+          <input type='radio' name='button1' onclick = "$('#delete').attr('action','/delete/name'); $('#delete_text').attr('name','name');" checked> name
+          <input type='radio' name='button1' onclick = "$('#delete').attr('action','/delete/id'); $('#delete_text').attr('name','id');"> id
+          <input type='submit'></input>
+        </form>
+      </div>
+    </div> <br>
 
-  <h5> Delete File </h5>
-  <form action='/delete/name' method='GET' enctype="application/x-www-form-urlencoded" id='delete'>
-    <input type='text' name='name' id='delete_text'></input>
-    <input type='radio' name='button1' onclick = "$('#delete').attr('action','/delete/name'); $('#delete_text').attr('name','name');" checked> name
-    <input type='radio' name='button1' onclick = "$('#delete').attr('action','/delete/id'); $('#delete_text').attr('name','id');"> id
-    <input type='submit'></input>
-  </form>
 
-  <h5> DB Viewer </h5>
-  <form action='/find' id='theform'>
-    id:<br>
-    <input type='text'  name='_id' id='id'></input><br>
-    filename:<br>
-    <input type='text'  name='filename'id='filename'></input><br>
-    aliases:<br>
-    <input type='text'  name='aliases' id='aliases'></input><br>
-    <input type='submit' value="Submit" id='dbviewer_button'></input>
-  </form>
-  <table id="dbviewer">
+    <div class='card'>
+      <div class='card-header'>
+        <h5> DB Viewer </h5>
+      </div>
+      <div class='card-body'>
+      <form action='/find' id='theform'>
+        id:<br>
+        <input type='text'  name='_id' id='id'></input><br>
+        filename:<br>
+        <input type='text'  name='filename'id='filename'></input><br>
+        aliases:<br>
+        <input type='text'  name='aliases' id='aliases'></input><br>
+        <input type='submit' value="Submit" id='dbviewer_button'></input>
+      </form>
+      </div>
+    </div> <br>
 
-  </table>
+    <div class='card'>
+      <div class='card-header'>
+        <h5> Database Viewer </h5>
+      </div>
+      <div class='card-body'>
+        <table class='table' id="dbviewer">  </table>
+      </div>
+    </div>
+  </div>
 
   <script>
     $('#theform').ajaxForm({
