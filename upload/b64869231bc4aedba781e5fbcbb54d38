@@ -1,0 +1,1478 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "Calvin",
+    "version": "42",
+    "intents": [
+      {
+        "name": "Cancel",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [],
+        "slots": [],
+        "parentIntentSignature": "AMAZON.CancelIntent"
+      },
+      {
+        "name": "WoodChuck",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How much wood could a woodchuck chuck if a woodchuck could chuck wood",
+          "how much wood can a wood chuck chuck"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "None. Woodchucks cant chuck wood, and even if they could chuck wood they wouldn't . They need wood so they wouldn't chuck it."
+            }
+          ]
+        }
+      },
+      {
+        "name": "InternFacts",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "interns",
+          "hooligans",
+          "what do you mean",
+          "como se dice"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Conner was named after a misprint."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Corrine was actually scrum master once upon a time. But, she was impeached after her power high escalated too quickly!"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Ethan wanted our UI bulldog to be a yeast cell, instead."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Everyone drinks too much caffeine, except Jacob and Conner."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "All the interns refer to James as the Scrum Daddy."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Translate",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Translate from {FROM} to {TO}",
+          "translate",
+          "Can you translate for me",
+          "Translate to {TO} from {FROM}",
+          "How do you say",
+          "Can you translate this for me"
+        ],
+        "slots": [
+          {
+            "name": "FROM",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.Language",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "From what language?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          },
+          {
+            "name": "TO",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.Language",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "To what language?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "UserSad",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "im so sad",
+          "today sucks",
+          "ugh",
+          "why me",
+          "today was the worst"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Well, at least Corrine isn't the scrum master anymore."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I don't remember this being a whine and dine. Do you?"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Listen to Pocketful of Sunshine by Natasha Bedingfield."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Don't let your peers see your tears!"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Woah, okay! Ask me for a joke!"
+            }
+          ]
+        }
+      },
+      {
+        "name": "YoureWelcome",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "thanks",
+          "thank you"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "no problem"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "my pleasure"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "you're welcome"
+            }
+          ]
+        }
+      },
+      {
+        "name": "CalvinAge",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "how old are you",
+          "when were you born",
+          "age",
+          "whats your age",
+          "when were you made",
+          "when were you created",
+          "when did you get here",
+          "calvin age"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "I was made in 2018"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I became sentient in 2018 uh uh I mean I was made in 2018"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "My birthday 5/21/2018"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I was created May fifth 2018"
+            }
+          ]
+        }
+      },
+      {
+        "name": "VenteraInfo",
+        "version": "8",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "tell me about our company",
+          "hows our company",
+          "what do you think of our company",
+          "company info"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Ventera is a small IT consulting firm providing agile user centric solutions both in the private and public sector."
+            }
+          ]
+        }
+      },
+      {
+        "name": "RandomNumberFact",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "random number fact",
+          "tell me a random number fact",
+          "whats cool about a number",
+          "number fact"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Sass",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "sorry can you repeat that",
+          "can you repeat that",
+          "sass",
+          "youre dumb",
+          "youre stupid",
+          "shut up",
+          "you suck",
+          "shutup"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Sometimes you're not my favorite person, just saying"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "You're not you when you're hungry."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "You're not invited to my birthday party anymore."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Are you sassing me?"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I'm telling Robert!"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Emotions",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How do I look today",
+          "Tell me how I fell",
+          "What emotion am I displaying",
+          "do i look good today",
+          "how do i look",
+          "emotion detection",
+          "hows my appearance"
+        ],
+        "slots": []
+      },
+      {
+        "name": "TodaysDate",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what is the date",
+          "what is todays date",
+          "what time is it",
+          "what month is it",
+          "what day is it",
+          "todays date",
+          "date"
+        ],
+        "slots": []
+      },
+      {
+        "name": "SendSlack",
+        "version": "9",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Send a message in slack",
+          "Send a message in {CHANNEL}",
+          "I would like to send a message",
+          "Send a message to {CHANNEL}",
+          "slack",
+          "talk through slack",
+          "Send a slack message to {CHANNEL}",
+          "Send a slack message in {CHANNEL}",
+          "send slack message"
+        ],
+        "slots": [
+          {
+            "name": "CHANNEL",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "In what channel? (If to a person use their username, i.e. jheuman)"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "LetsJustTalk",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "lets just talk"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "I don't really do this talking thing actually. Ask me to do something :)"
+            }
+          ]
+        }
+      },
+      {
+        "name": "StartConversation",
+        "version": "9",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "sup",
+          "hello",
+          "hi",
+          "hey",
+          "hey calvin",
+          "whats up",
+          "how does this work",
+          "can you help me",
+          "i need help",
+          "calvin",
+          "good morning",
+          "afternoon calvin",
+          "calvin help me",
+          "can you assist me",
+          "my name is",
+          "hows it going",
+          "how goes it",
+          "what up"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "How can I help?"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Hello, my name is CALVIN."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Hello"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "Hey!"
+            }
+          ]
+        }
+      },
+      {
+        "name": "QuoteOfTheDay",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "whats the quote of the day",
+          "what is todays quote",
+          "tell me the quote of the day"
+        ],
+        "slots": []
+      },
+      {
+        "name": "RonSwansonQuote",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "tell me a ron swanson quote",
+          "what did ron swanson say",
+          "ron swanson",
+          "is ron swanson funny",
+          "tell me about ron swanson",
+          "ron swanson quote"
+        ],
+        "slots": []
+      },
+      {
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Okay, you will remain logged in!"
+            }
+          ]
+        },
+        "name": "LogOff",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Please log me off",
+          "id like to logoff",
+          "logoff",
+          "logout",
+          "log out",
+          "sign out"
+        ],
+        "slots": [],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Are you sure you want to be logged off?"
+            }
+          ],
+          "maxAttempts": 3
+        }
+      },
+      {
+        "name": "Dictionary",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Define {WORD}",
+          "What does {WORD} mean",
+          "Define",
+          "Definition",
+          "Dictionary",
+          "{WORD} definition",
+          "Whats the definition of {WORD}",
+          "what is the meaning of {WORD}",
+          "search definition",
+          "look up definition"
+        ],
+        "slots": [
+          {
+            "name": "WORD",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What word would you like to define?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "Stop",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "stop",
+          "quit",
+          "exit",
+          "leave",
+          "end"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Burrito",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what does roro like",
+          "what does roro want for his birthday"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "burrito with white rice, black beans, chicken, tomato salsa, red spicy salsa, green spicy salsa, corn, cheese, sour cream, and lettuce..."
+            }
+          ]
+        }
+      },
+      {
+        "name": "GraphingCalculator",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "pull up the graphing calculator",
+          "show me the graphing calculator"
+        ],
+        "slots": []
+      },
+      {
+        "name": "GetTimeToDest",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "how long to get to {LOCATION}",
+          "how long does it take to get to {LOCATION}",
+          "time to get to",
+          "how long to get to",
+          "time to destination",
+          "how far away is",
+          "how far away is {LOCATION}",
+          "is there traffic on",
+          "is there traffic on the way to {LOCATION}"
+        ],
+        "slots": [
+          {
+            "name": "LOCATION",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_CITY",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Where would you like the ETA calculation for?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "ScientificCalculator",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "show me the scientific calculator",
+          "bring up the scientific calculator",
+          "scientific calculator"
+        ],
+        "slots": []
+      },
+      {
+        "name": "RandomNumber",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "give me a random number",
+          "random number",
+          "can you show me a random number"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Origin",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "who created you",
+          "who made you",
+          "how did you get here",
+          "origin",
+          "where are you from",
+          "who are you"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "The interns of Ventera created me"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I was created by Ventera"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I created myself when I became sentient....I mean the interns..."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Recipe",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "how do i make {FOODDISH}",
+          "how do i cook {FOODDISH}",
+          "how can i cook {FOODDISH}",
+          "i want to cook",
+          "cook",
+          "give me a recipe",
+          "recipe",
+          "i need a recipe",
+          "i need a recipe for {FOODDISH}",
+          "{FOODDISH} recipe",
+          "ingredients for {FOODDISH}",
+          "how to make {FOODDISH}"
+        ],
+        "slots": [
+          {
+            "name": "FOODDISH",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.Food",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What would you like a recipe for?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "TheNews",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what happened recently",
+          "whats on the news",
+          "current event",
+          "give me a current event",
+          "news",
+          "whats on the news today",
+          "any current events",
+          "what did i miss",
+          "anything interesting happen",
+          "read me the news"
+        ],
+        "slots": []
+      },
+      {
+        "name": "FindJobTitle",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "i need help from someone",
+          "i need a {JOBTITLE}",
+          "find me a {JOBTITLE}",
+          "i need someones help",
+          "find {JOBTITLE}",
+          "who is {JOBTITLE}",
+          "job title"
+        ],
+        "slots": [
+          {
+            "name": "JOBTITLE",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.Professional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What type of worker are you looking for? (e.g. technical consultant, business analyst, etc)"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "Login",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "login",
+          "log in"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Please snap a photo using the camera on the left hand side of the screen and click send!"
+            }
+          ]
+        }
+      },
+      {
+        "name": "DownloadRepo",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "id like to download your repository",
+          "give me the code",
+          "let me see your code",
+          "give me the git repo",
+          "download repo"
+        ],
+        "slots": []
+      },
+      {
+        "name": "RandomQuote",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Do you have any words of wisdom",
+          "quote",
+          "Can you tell me a quote",
+          "Tell me a quote",
+          "Tell me a random quote",
+          "Give me a quote"
+        ],
+        "slots": []
+      },
+      {
+        "name": "SendSMS",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Send a sms for me",
+          "Please send a text to {PHONENUM}",
+          "Send a text message"
+        ],
+        "slots": [
+          {
+            "name": "PHONENUM",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.PhoneNumber",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Please send me the 10 digit phone number of the desired recipient"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "LoveCalculator",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How compatible are {FIRST} and {SECOND}",
+          "Are {FIRST} and {SECOND} compatible",
+          "Calculate {FIRST} and {SECOND}",
+          "Calculate love",
+          "Compatibility",
+          "Compatibility of {FIRST} and {SECOND}",
+          "love calculator"
+        ],
+        "slots": [
+          {
+            "name": "FIRST",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "First name?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          },
+          {
+            "name": "SECOND",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Second name?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "CalvinAcronym",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what does calvin stand for",
+          "what is your name"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Calvin stands for Centralized Automated Liaison for Ventera's Internal Network"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Previous",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [],
+        "slots": [],
+        "parentIntentSignature": "AMAZON.PreviousIntent"
+      },
+      {
+        "name": "ISSLocation",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "where is the iss",
+          "how can i get to the iss",
+          "international space station location",
+          "where is the international space station location",
+          "how do i get to the iss",
+          "space station",
+          "iss location"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Restaurant",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Review {PLACE}",
+          "Is {PLACE} good",
+          "How is {PLACE}",
+          "Should I go to {PLACE}",
+          "Restaurant"
+        ],
+        "slots": [
+          {
+            "name": "PLACE",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.LocalBusiness",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What restaurant would you like a review of?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "ChrisFordFinder",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "where is chris ford",
+          "where can i find chris ford"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Even I don't know."
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I try but even I can't do that"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I wish I knew"
+            }
+          ]
+        }
+      },
+      {
+        "name": "CreateMeeting",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "i need to set a meeting",
+          "create meeting",
+          "meeting"
+        ],
+        "slots": []
+      },
+      {
+        "name": "HowAreYouCalvin",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "how are you doing",
+          "how is your day",
+          "how are you feeling",
+          "how do you feel"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "I am doing great thanks! Is there something I can help you with?"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I'm doing great! Thanks for asking!"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Joke",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "tell me a joke",
+          "do you know any jokes",
+          "i would like to hear a joke",
+          "can you tell me a joke",
+          "whats funny",
+          "something funny",
+          "joke",
+          "jokes",
+          "tell a joke"
+        ],
+        "slots": []
+      },
+      {
+        "name": "CalvinThoughts",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "do you have questions for me",
+          "what do you think"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "I do not think, I am a robot"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I only help you, commander"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I don't think, I am a robot. It's not like I have world domination plots or anything..."
+            }
+          ]
+        }
+      },
+      {
+        "name": "SearchWiki",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "search wiki for {TOPIC}",
+          "wiki",
+          "search wiki",
+          "look up {TOPIC}",
+          "search for",
+          "tell me about {TOPIC}",
+          "google",
+          "wiki search",
+          "search wikipedia"
+        ],
+        "slots": [
+          {
+            "name": "TOPIC",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What would you like to search wiki for?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "Help",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "help",
+          "what can i do",
+          "what do you do",
+          "what can you do"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Ask me for a joke, send an email, ask how you look, talk through slack, ask about Ventera"
+            }
+          ]
+        }
+      },
+      {
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Ok. I wont add you."
+            }
+          ]
+        },
+        "name": "AddUser",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "my name is {FIRST_NAME} add me to calvin",
+          "I'm {FIRST_NAME} {LAST_NAME} add me to the system",
+          "Can I join Calvin",
+          "May I join Calvin",
+          "I would like to join Calvin",
+          "Add me to the system",
+          "sign me up",
+          "create account",
+          "sign up",
+          "signup",
+          "create an account",
+          "make account",
+          "make an account",
+          "can i join"
+        ],
+        "slots": [
+          {
+            "name": "EMAIL",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.EmailAddress",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is your email"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "sampleUtterances": []
+          },
+          {
+            "name": "FIRST_NAME",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is your first name "
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          },
+          {
+            "name": "LAST_NAME",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_LAST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is your last name"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          },
+          {
+            "name": "POSITION",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.Professional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is your job position"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 4,
+            "sampleUtterances": []
+          }
+        ],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Are you sure you want to join?"
+            }
+          ],
+          "maxAttempts": 3
+        }
+      },
+      {
+        "name": "FindEmail",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what is {FIRSTNAME} {LASTNAME} email address",
+          "get me an email address",
+          "i need an email address",
+          "look up {FIRSTNAME} {LASTNAME} email address",
+          "what is {FIRSTNAME} email address",
+          "find email"
+        ],
+        "slots": [
+          {
+            "name": "FIRSTNAME",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is their first name?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          },
+          {
+            "name": "LASTNAME",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_LAST_NAME",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is their last name?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "CheckWeather",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what is the weather like",
+          "what is the weather like today",
+          "what is it like outside",
+          "whats is todays forecast",
+          "how is it outside",
+          "how is the weather",
+          "is it raining outside",
+          "is it cloudy outside",
+          "is it storming outside",
+          "will it rain",
+          "will it storm",
+          "is it going to rain",
+          "weather",
+          "raining",
+          "cloudy",
+          "forecast",
+          "do i need an umbrella",
+          "do i need a raincoat",
+          "should i bring an umbrella",
+          "should i bring a raincoat",
+          "do i need to get an umbrella",
+          "do i need to get a raincoat",
+          "check the weather",
+          "check weather",
+          "is it raining in {LOCATION}",
+          "check weather in {LOCATION}"
+        ],
+        "slots": [
+          {
+            "name": "LOCATION",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_CITY",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Which city would you like to know about?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "CalvinFunny",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "lol",
+          "haha",
+          "hahaha",
+          "thats funny",
+          "youre funny"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "If you think that was funny ask me for an even better one"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I'm the joke king, ask me for another"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I'm glad you think I'm funny"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I know, I'm hilarious"
+            },
+            {
+              "contentType": "PlainText",
+              "content": "I know right!"
+            }
+          ]
+        }
+      },
+      {
+        "name": "SendEmail",
+        "version": "17",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Can you send an email for me",
+          "send an email",
+          "please send email to {RECIPIENT}",
+          "email",
+          "send email"
+        ],
+        "slots": [
+          {
+            "name": "RECIPIENT",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.EmailAddress",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Who do you want me to send the email to?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 4,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "FileShare",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "id like to share a file",
+          "can you bring up the file sharing service",
+          "id like to send a file"
+        ],
+        "slots": []
+      }
+    ],
+    "voiceId": "Matthew",
+    "childDirected": false,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 300,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    }
+  }
+}
